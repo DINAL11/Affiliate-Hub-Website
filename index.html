@@ -1,56 +1,81 @@
 <!DOCTYPE html>
-</div>
-<div class="card">
-<img src="assets/fiction2.jpg" alt="Book" />
-<h3>Quantum Finance System</h3>
-<p>Learn how quantum computing will redefine trading and investment strategies.</p>
-<a href="#" class="btn">Enroll</a>
-</div>
-</div>
-</section>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinkVerse | Explore Top Digital Products</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">LinkVerse</div>
+    <nav>
+      <ul>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
 
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Discover & Promote the Future of Online Products</h1>
+      <p>Find high-converting offers across every category — Health, Finance, Fashion, and more. Earn by promoting what you love.</p>
+      <a href="#categories" class="btn">Explore Categories</a>
+    </div>
+  </section>
 
-<section id="food" class="category">
-<h2>Food & Nutrition</h2>
-<div class="grid">
-<div class="card">
-<img src="assets/food1.jpg" alt="Food" />
-<h3>Vegan Recipe Secrets</h3>
-<p>Delicious, plant-based recipes to boost energy and health.</p>
-<a href="#" class="btn">Get Recipes</a>
-</div>
-<div class="card">
-<img src="assets/food2.jpg" alt="Food" />
-<h3>Metabolic Cooking System</h3>
-<p>Learn to prepare fat-burning meals that keep you energized and lean.</p>
-<a href="#" class="btn">Try Now</a>
-</div>
-</div>
-</section>
+  <!-- Categories Section -->
+  <section id="categories" class="categories">
+    <h2>Categories</h2>
+    <div class="category-grid">
+      <div class="category-card" onclick="filterProducts('health')">
+        <h3>Health</h3>
+        <p>Wellness, fitness & transformation programs</p>
+      </div>
+      <div class="category-card" onclick="filterProducts('clothes')">
+        <h3>Clothes</h3>
+        <p>Trending fashion & lifestyle collections</p>
+      </div>
+      <div class="category-card" onclick="filterProducts('fiction')">
+        <h3>Fiction</h3>
+        <p>Books & creative storytelling courses</p>
+      </div>
+      <div class="category-card" onclick="filterProducts('food')">
+        <h3>Food</h3>
+        <p>Nutrition, recipes & food innovation guides</p>
+      </div>
+      <div class="category-card" onclick="filterProducts('tech')">
+        <h3>Tech</h3>
+        <p>AI, finance & future-ready systems</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- Products Section -->
+  <section id="products" class="products">
+    <h2>Featured Products</h2>
+    <div class="product-grid" id="productGrid"></div>
+  </section>
 
-<section id="tech" class="category">
-<h2>AI & Tech</h2>
-<div class="grid">
-<div class="card">
-<img src="assets/tech1.jpg" alt="Tech" />
-<h3>AI Business Builder</h3>
-<p>Create passive income streams using artificial intelligence tools and automation.</p>
-<a href="#" class="btn">Join Program</a>
-</div>
-<div class="card">
-<img src="assets/tech2.jpg" alt="Tech" />
-<h3>Crypto Wealth Academy</h3>
-<p>Master blockchain investing and crypto trading with expert guidance.</p>
-<a href="#" class="btn">Get Access</a>
-</div>
-</div>
-</section>
-</main>
+  <!-- About Section -->
+  <section id="about" class="about">
+    <h2>About LinkVerse</h2>
+    <p>
+      LinkVerse is your digital bridge between innovation and opportunity.  
+      We curate the best affiliate products from platforms like Digistore24 —  
+      empowering creators and marketers to earn smarter and faster.
+    </p>
+  </section>
 
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 LinkVerse. All rights reserved.</p>
+  </footer>
 
-<footer>
-<p>© 2025 MetaCoreLife. Designed for digital entrepreneurs. All rights reserved.</p>
-</footer>
+  <script src="script.js"></script>
 </body>
 </html>
