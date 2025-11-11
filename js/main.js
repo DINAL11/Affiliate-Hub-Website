@@ -1,0 +1,320 @@
+// ============================================
+// MAIN JAVASCRIPT FILE
+// ============================================
+
+// Track which products are currently displayed
+let displayedProducts = 6;
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+    initializeNavigation();
+    loadProducts();
+    loadCategories();
+    loadTestimonials();
+    initializeScrollEffects();
+    
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+});
+
+// ============================================
+// NAVIGATION
+// ============================================
+function initializeNavigation() {
+    const navbar = document.getElementById('navbar');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    // Scroll effect
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    
+    // Mobile menu toggle
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+    }
+    
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+            navLinks.classList.remove('active');
+        });
+    });
+}
+
+// ============================================
+// PRODUCTS
+// ============================================
+function loadProducts(count = CONFIG.PRODUCTS_PER_PAGE) {
+    const productGrid = document.getElementById('productGrid');
+    if (!productGrid) return;
+    
+    productGrid.innerHTML = '';
+    
+    const productsToShow = PRODUCTS.slice(0, count);
+    
+    productsToShow.forEach(product => {
+        const productCard = createProductCard(product);
+        productGrid.appendChild(productCard);
+    });
+    
+    displayedProducts = count;
+    
+    // Reinitialize icons
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+}
+
+function createProductCard(product) {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    
+    const affiliateLink = generateAffiliateLink(product.productId);
+    const savings = Math.round((1 - product.price / product.originalPrice) * 100);
+    
+    card.innerHTML = `
+        <div class="product-badges">
+            ${product.badges.map(badge => `<span class="badge">${badge}</span>`).join('')}
+        </div>
+        
+        ${CONFIG.SHOW_COMMISSION ? `
+        <div class="commission-badge">${product.commission}% Commission</div>
+        ` : ''}
+        
+        <div class="product-image">
+            <img src="${product.image}" alt="${product.title}" loading="lazy">
+            <div class="image-overlay"></div>
+        </div>
+        
+        <div class="product-content">
+            <div class="product-category">${product.category}</div>
+            
+            <h3 class="product-title">${product.title}</h3>
+            
+            <p class="product-description">${product.description}</p>
+            
+            <div class="product-features">
+                ${product.features.map(feature => `
+                    <div class="feature-item">
+                        <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+                        <span>${feature}</span>
+                    </div>
+                `).join('')}
+            </div>
+            
+            <div class="product-rating">
+                <div class="stars">
+                    ${generateStars(product.rating)}
+                </div>
+                <span class="rating-number">${product.rating}</span>
+                <span class="rating-count">(${product.reviews.toLocaleString()} reviews)</span>
+            </div>
+            
+            <div class="product-price">
+                <div>
+                    <span class="price-current">${CONFIG.CURRENCY_SYMBOL}${product.price}</span>
+                    ${CONFIG.SHOW_ORIGINAL_PRICE ? `
+                    <span class="price-original">${CONFIG.CURRENCY_SYMBOL}${product.originalPrice}</span>
+                    ` : ''}
+                </div>
+                <div class="price-save">Save ${savings}%</div>
+            </div>
+            
+            <button class="product-cta" onclick="handleProductClick('${affiliateLink}', '${product.title}')">
+                <span>Get Instant Access</span>
+                <i data-lucide="external-link" style="width: 18px; height: 18px;"></i>
+            </button>
+            
+            <div class="trust-badge">
+                <i data-lucide="shield" style="width: 14px; height: 14px;"></i>
+                <span>30-Day Money Back Guarantee</span>
+            </div>
+        </div>
+    `;
+    
+    return card;
+}
+
+function generateStars(rating) {
+    let stars = '';
+    for (let i = 0; i < 5; i++) {
+        stars += '<i data-lucide="star" style="width: 16px; height: 16px;"></i>';
+    }
+    return stars;
+}
+
+function handleProductClick(affiliateLink, productTitle) {
+    // Track click for analytics
+    console.log(`Product clicked: ${productTitle}`);
+    
+    // Google Analytics tracking (if configured)
+    if (typeof gtag !== 'undefined' && CONFIG.GOOGLE_ANALYTICS_ID) {
+        gtag('event', 'product_click', {
+            'product_name': productTitle,
+            'affiliate_link': affiliateLink
+        });
+    }
+    
+    // Facebook Pixel tracking (if configured)
+    if (typeof fbq !== 'undefined' && CONFIG.FACEBOOK_PIXEL_ID) {
+        fbq('track', 'ViewContent', {
+            content_name: productTitle
+        });
+    }
+    
+    // Open affiliate link in new tab
+    window.open(affiliateLink, '_blank');
+}
+
+function loadMoreProducts() {
+    const newCount = displayedProducts + CONFIG.PRODUCTS_PER_PAGE;
+    if (newCount > PRODUCTS.length) {
+        loadProducts(PRODUCTS.length);
+        document.querySelector('.load-more').style.display = 'none';
+    } else {
+        loadProducts(newCount);
+    }
+}
+
+// ============================================
+// CATEGORIES
+// ============================================
+function loadCategories() {
+    const categoryGrid = document.getElementById('categoryGrid');
+    if (!categoryGrid) return;
+    
+    categoryGrid.innerHTML = '';
+    
+    CATEGORIES.forEach(category => {
+        const categoryCard = createCategoryCard(category);
+        categoryGrid.appendChild(categoryCard);
+    });
+    
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+}
+
+function createCategoryCard(category) {
+    const card = document.createElement('div');
+    card.className = 'category-card';
+    card.onclick = () => filterByCategory(category.name);
+    
+    card.innerHTML = `
+        <div class="category-icon">${category.icon}</div>
+        <div class="category-name">${category.name}</div>
+        <div class="category-count">${category.count} products</div>
+    `;
+    
+    return card;
+}
+
+function filterByCategory(categoryName) {
+    // Filter products by category
+    const filteredProducts = PRODUCTS.filter(p => p.category === categoryName);
+    
+    // Clear and reload grid with filtered products
+    const productGrid = document.getElementById('productGrid');
+    productGrid.innerHTML = '';
+    
+    filteredProducts.forEach(product => {
+        const productCard = createProductCard(product);
+        productGrid.appendChild(productCard);
+    });
+    
+    // Scroll to products section
+    scrollToProducts();
+    
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+}
+
+// ============================================
+// TESTIMONIALS
+// ============================================
+function loadTestimonials() {
+    const testimonialsGrid = document.getElementById('testimonialsGrid');
+    if (!testimonialsGrid) return;
+    
+    testimonialsGrid.innerHTML = '';
+    
+    TESTIMONIALS.forEach(testimonial => {
+        const testimonialCard = createTestimonialCard(testimonial);
+        testimonialsGrid.appendChild(testimonialCard);
+    });
+    
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+}
+
+function createTestimonialCard(testimonial) {
+    const card = document.createElement('div');
+    card.className = 'testimonial-card';
+    
+    card.innerHTML = `
+        <div class="testimonial-stars">
+            ${generateStars(testimonial.rating)}
+        </div>
+        <p class="testimonial-text">"${testimonial.text}"</p>
+        <div class="testimonial-author">${testimonial.name}</div>
+        <div class="testimonial-role">${testimonial.role}</div>
+    `;
+    
+    return card;
+}
+
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
+function scrollToProducts() {
+    const productsSection = document.getElementById('products');
+    if (productsSection) {
+        productsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+function initializeScrollEffects() {
+    // Add scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observe product cards and category cards
+    setTimeout(() => {
+        document.querySelectorAll('.product-card, .category-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    }, 100);
+}
+
+// ============================================
+// GLOBAL FUNCTIONS
+// ============================================
+window.scrollToProducts = scrollToProducts;
+window.loadMoreProducts = loadMoreProducts;
+window.handleProductClick = handleProductClick;
