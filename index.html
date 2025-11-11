@@ -1,81 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LinkVerse | Explore Top Digital Products</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover premium products across multiple categories. Get exclusive deals with money-back guarantee.">
+    <meta name="keywords" content="affiliate, products, deals, online shopping, digital products">
+    <title>EliteHub - Premium Products & Exclusive Deals</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo">LinkVerse</div>
-    <nav>
-      <ul>
-        <li><a href="#categories">Categories</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i data-lucide="sparkles"></i>
+                    </div>
+                    <span class="logo-text">Elite<span class="highlight">Hub</span></span>
+                </div>
+                
+                <div class="nav-links" id="navLinks">
+                    <a href="#products">Products</a>
+                    <a href="#categories">Categories</a>
+                    <a href="#testimonials">Reviews</a>
+                    <button class="btn-primary">Get Started Free</button>
+                </div>
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
     </nav>
-  </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Discover & Promote the Future of Online Products</h1>
-      <p>Find high-converting offers across every category — Health, Finance, Fashion, and more. Earn by promoting what you love.</p>
-      <a href="#categories" class="btn">Explore Categories</a>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="animated-bg">
+            <div class="bg-gradient"></div>
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+
+        <div class="container hero-content">
+            <div class="hero-badge">
+                <i data-lucide="zap"></i>
+                <span>Over 50,000 Happy Customers</span>
+            </div>
+
+            <h1 class="hero-title">
+                Transform Your Life With
+                <br>
+                <span class="gradient-text">Premium Products</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                Access world-class products and resources that have helped thousands achieve extraordinary results. 
+                <span class="highlight-text">Money-back guarantee</span> on all products.
+            </p>
+
+            <div class="social-proof">
+                <div class="social-proof-item">
+                    <div class="avatars">
+                        <div class="avatar"></div>
+                        <div class="avatar"></div>
+                        <div class="avatar"></div>
+                        <div class="avatar"></div>
+                    </div>
+                    <span>2,847 purchased today</span>
+                </div>
+                <div class="social-proof-item">
+                    <i data-lucide="star" class="star-icon"></i>
+                    <span class="rating">4.9/5</span>
+                    <span class="reviews">(15,234 reviews)</span>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <button class="btn-primary btn-large" onclick="scrollToProducts()">
+                    <span>Browse Products</span>
+                    <i data-lucide="arrow-right"></i>
+                </button>
+                <button class="btn-secondary btn-large">
+                    <i data-lucide="shield"></i>
+                    <span>30-Day Guarantee</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        <div class="container">
+            <div class="urgency-content">
+                <i data-lucide="clock" class="pulse"></i>
+                <span>⚡ LIMITED TIME: Get 70% OFF on all products + Exclusive Bonuses!</span>
+                <i data-lucide="clock" class="pulse"></i>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <!-- Categories Section -->
-  <section id="categories" class="categories">
-    <h2>Categories</h2>
-    <div class="category-grid">
-      <div class="category-card" onclick="filterProducts('health')">
-        <h3>Health</h3>
-        <p>Wellness, fitness & transformation programs</p>
-      </div>
-      <div class="category-card" onclick="filterProducts('clothes')">
-        <h3>Clothes</h3>
-        <p>Trending fashion & lifestyle collections</p>
-      </div>
-      <div class="category-card" onclick="filterProducts('fiction')">
-        <h3>Fiction</h3>
-        <p>Books & creative storytelling courses</p>
-      </div>
-      <div class="category-card" onclick="filterProducts('food')">
-        <h3>Food</h3>
-        <p>Nutrition, recipes & food innovation guides</p>
-      </div>
-      <div class="category-card" onclick="filterProducts('tech')">
-        <h3>Tech</h3>
-        <p>AI, finance & future-ready systems</p>
-      </div>
-    </div>
-  </section>
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>🔥 Hot Selling Products</h2>
+                <p>Hand-picked products with proven results</p>
+            </div>
 
-  <!-- Products Section -->
-  <section id="products" class="products">
-    <h2>Featured Products</h2>
-    <div class="product-grid" id="productGrid"></div>
-  </section>
+            <div id="productGrid" class="product-grid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
 
-  <!-- About Section -->
-  <section id="about" class="about">
-    <h2>About LinkVerse</h2>
-    <p>
-      LinkVerse is your digital bridge between innovation and opportunity.  
-      We curate the best affiliate products from platforms like Digistore24 —  
-      empowering creators and marketers to earn smarter and faster.
-    </p>
-  </section>
+            <div class="load-more">
+                <button class="btn-secondary" onclick="loadMoreProducts()">
+                    Load More Products
+                </button>
+            </div>
+        </div>
+    </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 LinkVerse. All rights reserved.</p>
-  </footer>
+    <!-- Categories Section -->
+    <section id="categories" class="categories-section">
+        <div class="container">
+            <h2 class="section-title">Browse by Category</h2>
+            <div id="categoryGrid" class="category-grid">
+                <!-- Categories will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
 
-  <script src="script.js"></script>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Join thousands of satisfied customers</p>
+            
+            <div id="testimonialsGrid" class="testimonials-grid">
+                <!-- Testimonials will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-overlay"></div>
+                <div class="cta-content">
+                    <i data-lucide="award" class="cta-icon"></i>
+                    <h2>Ready to Transform Your Life?</h2>
+                    <p>Join 50,000+ people who have already achieved their goals with our premium products</p>
+                    <button class="btn-light btn-large" onclick="scrollToProducts()">
+                        <span>Start Your Journey Now</span>
+                        <i data-lucide="chevron-right"></i>
+                    </button>
+                    <div class="cta-features">
+                        <div class="cta-feature">
+                            <i data-lucide="check"></i>
+                            <span>30-Day Guarantee</span>
+                        </div>
+                        <div class="cta-feature">
+                            <i data-lucide="check"></i>
+                            <span>Instant Access</span>
+                        </div>
+                        <div class="cta-feature">
+                            <i data-lucide="check"></i>
+                            <span>Secure Payment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 EliteHub. All rights reserved.</p>
+            <p class="footer-disclaimer">We earn a commission when you purchase through our affiliate links at no extra cost to you.</p>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
 </html>
