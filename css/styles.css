@@ -1,5 +1,5 @@
 /* ============================================
-   RESET & BASE STYLES
+   RESET & BASE STYLES - FindNBuy.store
    ============================================ */
 * {
     margin: 0;
@@ -59,9 +59,10 @@ body {
 }
 
 #navbar.scrolled {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.9);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .nav-content {
@@ -75,6 +76,7 @@ body {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    cursor: pointer;
 }
 
 .logo-icon {
@@ -96,6 +98,11 @@ body {
     color: var(--color-primary);
 }
 
+.logo-text .store {
+    color: var(--color-accent);
+    font-weight: 700;
+}
+
 .nav-links {
     display: flex;
     align-items: center;
@@ -105,6 +112,7 @@ body {
 .nav-links a {
     color: var(--color-text-primary);
     text-decoration: none;
+    font-weight: 500;
     transition: var(--transition-fast);
 }
 
@@ -185,6 +193,9 @@ body {
     padding: 8rem 1rem 5rem;
     text-align: center;
     overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
 .animated-bg {
@@ -408,7 +419,7 @@ body {
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
 }
@@ -494,6 +505,7 @@ body {
     font-size: 0.875rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
+    text-transform: uppercase;
 }
 
 .product-title {
@@ -504,6 +516,7 @@ body {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    min-height: 2.5rem;
 }
 
 .product-description {
@@ -533,6 +546,7 @@ body {
 
 .feature-item i {
     color: var(--color-success);
+    flex-shrink: 0;
 }
 
 .product-rating {
@@ -581,6 +595,7 @@ body {
     color: var(--color-text-secondary);
     text-decoration: line-through;
     margin-left: 0.5rem;
+    font-size: 1rem;
 }
 
 .price-save {
@@ -603,6 +618,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    font-size: 1rem;
 }
 
 .product-cta:hover {
@@ -627,6 +643,7 @@ body {
 
 .load-more {
     text-align: center;
+    margin-top: 2rem;
 }
 
 /* ============================================
@@ -697,6 +714,7 @@ body {
     text-align: center;
     color: var(--color-text-secondary);
     margin-bottom: 3rem;
+    font-size: 1.125rem;
 }
 
 .testimonials-grid {
@@ -716,6 +734,7 @@ body {
 
 .testimonial-card:hover {
     border-color: rgba(168, 85, 247, 0.5);
+    transform: translateY(-5px);
 }
 
 .testimonial-stars {
@@ -733,15 +752,24 @@ body {
     color: var(--color-text-secondary);
     margin-bottom: 1rem;
     font-style: italic;
+    line-height: 1.6;
 }
 
 .testimonial-author {
     font-weight: 700;
+    margin-bottom: 0.25rem;
 }
 
 .testimonial-role {
     font-size: 0.875rem;
     color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.testimonial-product {
+    font-size: 0.75rem;
+    color: var(--color-primary);
+    margin-top: 0.5rem;
 }
 
 /* ============================================
@@ -826,9 +854,24 @@ body {
     color: var(--color-text-secondary);
 }
 
+.footer-brand {
+    margin-bottom: 1.5rem;
+}
+
+.footer-brand .logo {
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.footer-tagline {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
 .footer-disclaimer {
     font-size: 0.875rem;
     margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .footer-links {
@@ -836,6 +879,7 @@ body {
     justify-content: center;
     gap: 1.5rem;
     margin-top: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .footer-links a {
@@ -848,6 +892,11 @@ body {
     color: var(--color-text-primary);
 }
 
+.copyright {
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+}
+
 /* ============================================
    RESPONSIVE
    ============================================ */
@@ -858,7 +907,7 @@ body {
         top: 4rem;
         left: 0;
         right: 0;
-        background: rgba(0, 0, 0, 0.95);
+        background: rgba(0, 0, 0, 0.98);
         backdrop-filter: blur(20px);
         flex-direction: column;
         padding: 2rem;
@@ -875,6 +924,7 @@ body {
 
     .hero {
         padding: 6rem 1rem 3rem;
+        min-height: auto;
     }
 
     .hero-buttons {
@@ -902,6 +952,10 @@ body {
         flex-direction: column;
         gap: 0.75rem;
     }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
@@ -911,5 +965,14 @@ body {
     
     .category-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 }
