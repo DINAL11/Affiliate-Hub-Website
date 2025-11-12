@@ -21,7 +21,7 @@ const CONFIG = {
     
     // Display Settings
     PRODUCTS_PER_PAGE: 6,
-    SHOW_COMMISSION: true,
+    SHOW_COMMISSION: false, // Hide commission from customers
     SHOW_ORIGINAL_PRICE: true,
     
     // Analytics (Add your tracking IDs)
