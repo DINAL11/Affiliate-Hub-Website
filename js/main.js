@@ -109,17 +109,13 @@ function createProductCard(product) {
     const card = document.createElement('div');
     card.className = 'product-card';
     
-    const affiliateLink = generateAffiliateLink(product.productId);
+    const affiliateLink = product.affiliateLink || generateAffiliateLink(product.productId);
     const savings = Math.round((1 - product.price / product.originalPrice) * 100);
     
     card.innerHTML = `
         <div class="product-badges">
             ${product.badges.map(badge => `<span class="badge">${badge}</span>`).join('')}
         </div>
-        
-        ${CONFIG.SHOW_COMMISSION ? `
-        <div class="commission-badge">${product.commission}% Commission</div>
-        ` : ''}
         
         <div class="product-image">
             <img src="${product.image}" alt="${product.title}" loading="lazy">
