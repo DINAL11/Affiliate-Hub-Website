@@ -3,215 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Find and buy premium products with exclusive deals. Digital and physical products with money-back guarantee.">
-    <meta name="keywords" content="online shopping, affiliate, deals, products, billionaire brain wave, digital products">
-    <title>FindNBuy.store - Find & Buy Premium Products</title>
+    <meta name="description" content="FindNBuy - Find the cheapest deals online. We scan the internet to save you money on every purchase.">
+    <title>FindNBuy - Cheapest Deals Online</title>
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css">
+    <!-- Stripe JS -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
+    <!-- Header -->
+    <header id="mainHeader" class="header">
         <div class="container">
-            <div class="nav-content">
+            <div class="header-content">
+                <!-- Logo -->
                 <div class="logo">
                     <div class="logo-icon">
-                        <i data-lucide="shopping-bag"></i>
+                        <i data-lucide="trending-down"></i>
                     </div>
-                    <span class="logo-text">FindN<span class="highlight">Buy</span><span class="store">.store</span></span>
-                </div>
-                
-                <div class="nav-links" id="navLinks">
-                    <a href="#products">Products</a>
-                    <a href="#categories">Categories</a>
-                    <a href="#testimonials">Reviews</a>
-                    <button class="btn-primary">Shop Now</button>
+                    <div class="logo-text">
+                        <span class="logo-brand">FindNBuy</span>
+                        <span class="logo-tagline">Cheapest Online</span>
+                    </div>
                 </div>
 
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <!-- Desktop Search -->
+                <div class="search-bar desktop-only">
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Search for the cheapest deals..."
+                        class="search-input"
+                    >
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav-actions desktop-only">
+                    <button id="wishlistBtn" class="icon-btn">
+                        <i data-lucide="heart"></i>
+                        <span class="badge" id="wishlistBadge">0</span>
+                    </button>
+                    
+                    <button id="cartBtn" class="icon-btn">
+                        <i data-lucide="shopping-cart"></i>
+                        <span class="badge" id="cartBadge">0</span>
+                    </button>
+                    
+                    <div id="userSection">
+                        <!-- Logged out state -->
+                        <button id="loginBtn" class="btn btn-primary">
+                            <i data-lucide="log-in"></i>
+                            <span>Login</span>
+                        </button>
+                        
+                        <!-- Logged in state (hidden by default) -->
+                        <div id="userMenu" class="user-menu" style="display: none;">
+                            <button class="user-btn">
+                                <i data-lucide="user"></i>
+                                <span id="userName">User</span>
+                            </button>
+                            <div class="user-dropdown">
+                                <a href="#" id="myOrdersLink">My Orders</a>
+                                <a href="#" id="myAccountLink">My Account</a>
+                                <a href="#" id="logoutBtn">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Mobile Menu Toggle -->
+                <button id="mobileMenuBtn" class="mobile-menu-btn mobile-only">
                     <i data-lucide="menu"></i>
                 </button>
             </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
+            <!-- Mobile Search -->
+            <div class="search-bar mobile-only">
+                <i data-lucide="search" class="search-icon"></i>
+                <input 
+                    type="text" 
+                    id="searchInputMobile" 
+                    placeholder="Search deals..."
+                    class="search-input"
+                >
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <div class="mobile-menu-content">
+            <button id="closeMobileMenu" class="close-btn">
+                <i data-lucide="x"></i>
+            </button>
+            
+            <nav class="mobile-nav">
+                <a href="#" class="mobile-nav-item">
+                    <i data-lucide="heart"></i>
+                    <span>Wishlist</span>
+                    <span class="badge" id="wishlistBadgeMobile">0</span>
+                </a>
+                <a href="#" class="mobile-nav-item" id="cartBtnMobile">
+                    <i data-lucide="shopping-cart"></i>
+                    <span>Cart</span>
+                    <span class="badge" id="cartBadgeMobile">0</span>
+                </a>
+                <a href="#" class="mobile-nav-item" id="loginBtnMobile">
+                    <i data-lucide="log-in"></i>
+                    <span>Login</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Banner -->
     <section class="hero">
-        <div class="animated-bg">
-            <div class="bg-gradient"></div>
-            <div class="blob blob-1"></div>
-            <div class="blob blob-2"></div>
-            <div class="blob blob-3"></div>
-        </div>
-
-        <div class="container hero-content">
-            <div class="hero-badge">
-                <i data-lucide="trending-up"></i>
-                <span>Over 50,000 Happy Customers Worldwide</span>
-            </div>
-
-            <h1 class="hero-title">
-                Find & Buy
-                <br>
-                <span class="gradient-text">Life-Changing Products</span>
-            </h1>
-
-            <p class="hero-subtitle">
-                Discover premium products that transform lives. From personal development to health & fitness. 
-                <span class="highlight-text">30-Day Money-Back Guarantee</span> on all purchases.
-            </p>
-
-            <div class="social-proof">
-                <div class="social-proof-item">
-                    <div class="avatars">
-                        <div class="avatar"></div>
-                        <div class="avatar"></div>
-                        <div class="avatar"></div>
-                        <div class="avatar"></div>
+        <div class="hero-gradient"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i data-lucide="sparkles"></i>
+                    <span>We Find The Cheapest Prices</span>
+                    <i data-lucide="sparkles"></i>
+                </div>
+                
+                <h1 class="hero-title">
+                    Save Up To <span class="highlight">70%</span><br>
+                    On Everything You Buy
+                </h1>
+                
+                <p class="hero-subtitle">
+                    We scan millions of products across the internet to find you the absolute lowest prices. 
+                    Stop overpaying – start saving today!
+                </p>
+                
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <i data-lucide="shield"></i>
+                        <span>Price Match Guarantee</span>
                     </div>
-                    <span>3,421 bought this week</span>
+                    <div class="hero-feature">
+                        <i data-lucide="zap"></i>
+                        <span>Instant Comparison</span>
+                    </div>
+                    <div class="hero-feature">
+                        <i data-lucide="package"></i>
+                        <span>Free Shipping</span>
+                    </div>
                 </div>
-                <div class="social-proof-item">
-                    <i data-lucide="star" class="star-icon"></i>
-                    <span class="rating">4.9/5</span>
-                    <span class="reviews">(18,567 reviews)</span>
-                </div>
-            </div>
-
-            <div class="hero-buttons">
-                <button class="btn-primary btn-large" onclick="scrollToProducts()">
-                    <span>Shop Best Sellers</span>
-                    <i data-lucide="arrow-right"></i>
-                </button>
-                <button class="btn-secondary btn-large">
-                    <i data-lucide="shield"></i>
-                    <span>30-Day Guarantee</span>
-                </button>
             </div>
         </div>
     </section>
 
-    <!-- Urgency Banner -->
-    <div class="urgency-banner">
+    <!-- Price Alert Banner -->
+    <div class="alert-banner">
         <div class="container">
-            <div class="urgency-content">
-                <i data-lucide="clock" class="pulse"></i>
-                <span>⚡ LIMITED TIME: Get 70% OFF on all products + Exclusive Bonuses!</span>
-                <i data-lucide="clock" class="pulse"></i>
+            <div class="alert-content">
+                <i data-lucide="trending-down" class="pulse"></i>
+                <span>🔥 Live Price Drops: We're tracking 10,000+ products and finding new deals every minute!</span>
+                <i data-lucide="trending-down" class="pulse"></i>
             </div>
         </div>
     </div>
 
+    <!-- Categories -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="categories-scroll" id="categoriesContainer">
+                <!-- Categories loaded by JS -->
+            </div>
+        </div>
+    </section>
+
     <!-- Products Section -->
-    <section id="products" class="products-section">
+    <main class="products-section">
         <div class="container">
             <div class="section-header">
-                <h2>🔥 Hot Selling Products</h2>
-                <p>Hand-picked products with proven results</p>
+                <h2>🎯 Today's Best Deals</h2>
+                <p>Hand-picked products with the lowest prices guaranteed</p>
             </div>
 
-            <div id="productGrid" class="product-grid">
-                <!-- Products will be loaded here by JavaScript -->
+            <!-- Filters -->
+            <div class="filters">
+                <select id="sortFilter" class="filter-select">
+                    <option value="discount">Highest Discount</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Top Rated</option>
+                </select>
             </div>
 
-            <div class="load-more" style="display: none;">
-                <button class="btn-secondary" onclick="loadMoreProducts()">
-                    Load More Products
+            <!-- Products Grid -->
+            <div id="productsGrid" class="products-grid">
+                <!-- Products loaded by JS -->
+            </div>
+
+            <!-- Load More -->
+            <div class="load-more" id="loadMoreSection" style="display: none;">
+                <button id="loadMoreBtn" class="btn btn-secondary btn-large">
+                    Load More Deals
                 </button>
             </div>
         </div>
-    </section>
+    </main>
 
-    <!-- Categories Section -->
-    <section id="categories" class="categories-section">
-        <div class="container">
-            <h2 class="section-title">Browse by Category</h2>
-            <div id="categoryGrid" class="category-grid">
-                <!-- Categories will be loaded here by JavaScript -->
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-overlay"></div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Shopping Cart</h2>
+                <button id="closeCart" class="close-btn">
+                    <i data-lucide="x"></i>
+                </button>
             </div>
-        </div>
-    </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials-section">
-        <div class="container">
-            <h2 class="section-title">What Our Customers Say</h2>
-            <p class="section-subtitle">Join thousands of satisfied customers</p>
-            
-            <div id="testimonialsGrid" class="testimonials-grid">
-                <!-- Testimonials will be loaded here by JavaScript -->
+            <div id="cartItems" class="cart-items">
+                <!-- Cart items loaded by JS -->
             </div>
-        </div>
-    </section>
 
-    <!-- Final CTA Section -->
-    <section class="final-cta">
-        <div class="container">
-            <div class="cta-card">
-                <div class="cta-overlay"></div>
-                <div class="cta-content">
-                    <i data-lucide="award" class="cta-icon"></i>
-                    <h2>Ready to Change Your Life?</h2>
-                    <p>Join 50,000+ people who have already transformed their lives with our premium products</p>
-                    <button class="btn-light btn-large" onclick="scrollToProducts()">
-                        <span>Start Shopping Now</span>
-                        <i data-lucide="chevron-right"></i>
-                    </button>
-                    <div class="cta-features">
-                        <div class="cta-feature">
-                            <i data-lucide="check"></i>
-                            <span>30-Day Guarantee</span>
-                        </div>
-                        <div class="cta-feature">
-                            <i data-lucide="check"></i>
-                            <span>Instant Access</span>
-                        </div>
-                        <div class="cta-feature">
-                            <i data-lucide="check"></i>
-                            <span>Secure Payment</span>
-                        </div>
+            <div class="cart-footer">
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="cartSubtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping:</span>
+                        <span class="free">FREE</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="cartTotal">$0.00</span>
                     </div>
                 </div>
+                <button id="checkoutBtn" class="btn btn-primary btn-large btn-block">
+                    <i data-lucide="credit-card"></i>
+                    <span>Checkout with Stripe</span>
+                </button>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="authTitle">Login</h2>
+                <button id="closeAuthModal" class="close-btn">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <form id="authForm" class="auth-form">
+                <div id="nameField" class="form-group" style="display: none;">
+                    <label>Full Name</label>
+                    <input type="text" id="authName" placeholder="John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="authEmail" placeholder="you@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="authPassword" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large btn-block">
+                    <span id="authSubmitText">Login</span>
+                </button>
+            </form>
+
+            <div class="auth-toggle">
+                <span id="authToggleText">Don't have an account?</span>
+                <button id="authToggleBtn" class="text-btn">Register</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-brand">
-                <div class="logo">
-                    <div class="logo-icon">
-                        <i data-lucide="shopping-bag"></i>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i data-lucide="trending-down"></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-brand">FindnBuy</span>
+                            <span class="logo-tagline">Cheapest Online</span>
+                        </div>
                     </div>
-                    <span class="logo-text">FindN<span class="highlight">Buy</span><span class="store">.store</span></span>
+                    <p class="footer-desc">
+                        We scan millions of products across the internet to find you the absolute lowest prices. 
+                        Stop overpaying – start saving today!
+                    </p>
                 </div>
-                <p class="footer-tagline">Find & Buy Life-Changing Products</p>
+
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Fashion</a></li>
+                        <li><a href="#">Home & Garden</a></li>
+                        <li><a href="#">Sports & Fitness</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Our Promise</h4>
+                    <ul>
+                        <li>✓ Lowest prices guaranteed</li>
+                        <li>✓ Price match guarantee</li>
+                        <li>✓ Free shipping on all orders</li>
+                        <li>✓ 30-day money back</li>
+                    </ul>
+                </div>
             </div>
-            <p class="footer-disclaimer">We earn a commission when you purchase through our affiliate links at no extra cost to you.</p>
-            <div class="footer-links">
-                <a href="#products">Products</a>
-                <a href="#categories">Categories</a>
-                <a href="#testimonials">Reviews</a>
-                <a href="mailto:support@findnbuy.store">Contact</a>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 FindNBuy.store - All rights reserved</p>
             </div>
-            <p class="copyright">&copy; 2024 FindNBuy.store. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- JavaScript Files -->
+     <!-- Add before your other scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/config.js"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
     <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/ui.js"></script>
     <script src="js/main.js"></script>
     <script>
         // Initialize Lucide icons

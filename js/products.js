@@ -1,143 +1,140 @@
 // ============================================
-// PRODUCTS DATABASE - FindNBuy.store
+// PRODUCTS DATA - FindNBuy Store
 // ============================================
 
-const PRODUCTS = [
+const PRODUCTS_DATA = [
     {
         id: 1,
-        title: "The Billionaire Brain Wave",
-        category: "Personal Development",
-        price: 39,
-        originalPrice: 197,
-        image: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=800&h=600&fit=crop",
-        rating: 4.9,
-        reviews: 8734,
-        affiliateLink: "https://www.digistore24.com/redir/524279/EdwineLase/",
-        badges: ["🔥 Best Seller", "80% OFF"],
-        features: ["7-Minute Daily Audio", "Instant Digital Access", "30-Day Guarantee"],
-        description: "Scientifically proven brain wave technology that attracts wealth and abundance into your life in just 7 minutes a day",
-        type: "digital",
-        featured: true
+        name: "Wireless Earbuds Pro",
+        price: 29.99,
+        originalPrice: 79.99,
+        image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&h=500&fit=crop",
+        category: "Electronics",
+        rating: 4.8,
+        reviews: 1243,
+        discount: 63,
+        description: "Premium sound quality with active noise cancellation. Perfect for work and play.",
+        inStock: true,
+        isNew: false
     },
     {
         id: 2,
-        title: "KeySlim Drops - Revolutionary Weight Loss",
-        category: "Health & Fitness",
-        price: 198.21,
-        originalPrice: 397,
-        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop",
-        rating: 4.8,
-        reviews: 12456,
-        affiliateLink: "https://getkeyslimdrops.cc/vsl1/#aff=EdwineLase",
-        badges: ["🔥 New Launch", "Fast Results"],
-        features: ["Drip & Drop Formula", "Natural Ingredients", "Proven Results"],
-        description: "One-of-a-kind weight loss drops with revolutionary formula. See dramatic results in weeks with our unique drip & drop method",
-        type: "physical",
-        featured: true
+        name: "Smart Watch Series 6",
+        price: 149.99,
+        originalPrice: 399.99,
+        image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=500&h=500&fit=crop",
+        category: "Electronics",
+        rating: 4.9,
+        reviews: 2156,
+        discount: 63,
+        description: "Track your fitness goals with style. Heart rate monitor, GPS, and more.",
+        inStock: true,
+        isNew: true
     },
     {
         id: 3,
-        title: "Advanced Amino Formula - Build Muscle Fast",
-        category: "Health & Fitness",
-        price: 112.60,
-        originalPrice: 249,
-        image: "https://images.unsplash.com/photo-1526401363794-c96f8a4bc65b?w=800&h=600&fit=crop",
-        rating: 4.9,
-        reviews: 8923,
-        affiliateLink: "https://www.digistore24.com/redir/472943/EdwineLase/",
-        badges: ["💪 Top Rated", "99% Protein"],
-        features: ["8 Essential Amino Acids", "99% Protein Utilization", "Enhanced Performance"],
-        description: "Build stronger muscles, boost energy & stamina, improve mood & memory. Complete amino acid profile with 99% protein utilization",
-        type: "physical",
-        featured: true
+        name: "Premium Yoga Mat",
+        price: 24.99,
+        originalPrice: 59.99,
+        image: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=500&h=500&fit=crop",
+        category: "Fitness",
+        rating: 4.7,
+        reviews: 892,
+        discount: 58,
+        description: "Non-slip, eco-friendly exercise mat with extra cushioning.",
+        inStock: true,
+        isNew: false
     },
     {
         id: 4,
-        title: "AlgePrime - Complete Business System",
-        category: "Business & Investment",
-        price: 3181.38,
-        originalPrice: 5999,
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-        rating: 4.9,
-        reviews: 2134,
-        affiliateLink: "https://algeprime.com#aff=EdwineLase",
-        badges: ["🚀 Premium", "High ROI"],
-        features: ["Member Area Access", "Video Courses", "24/7 Support"],
-        description: "Everything you need to start fast and scale your earnings. Clear payouts, ready-to-use creatives, and responsive support",
-        type: "digital",
-        featured: true
+        name: "Coffee Maker Deluxe",
+        price: 79.99,
+        originalPrice: 199.99,
+        image: "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=500&h=500&fit=crop",
+        category: "Home",
+        rating: 4.6,
+        reviews: 567,
+        discount: 60,
+        description: "Brew barista-quality coffee at home. Programmable timer included.",
+        inStock: true,
+        isNew: false
     },
     {
         id: 5,
-        title: "AI Educator Pro - Create 10x More Content",
-        category: "Education",
-        price: 90,
-        originalPrice: 297,
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
+        name: "LED Desk Lamp",
+        price: 34.99,
+        originalPrice: 89.99,
+        image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&h=500&fit=crop",
+        category: "Home",
+        rating: 4.5,
+        reviews: 423,
+        discount: 61,
+        description: "Adjustable brightness and color temperature. USB charging port.",
+        inStock: true,
+        isNew: false
+    },
+    {
+        id: 6,
+        name: "Resistance Bands Set",
+        price: 19.99,
+        originalPrice: 49.99,
+        image: "https://images.unsplash.com/photo-1598289431512-b97b0917affc?w=500&h=500&fit=crop",
+        category: "Fitness",
         rating: 4.8,
-        reviews: 5678,
-        affiliateLink: "https://www.digistore24.com/redir/647496/EdwineLase/",
-        badges: ["🤖 AI Powered", "2025 Tech"],
-        features: ["20 Video Lectures", "AKOOL AI Credits Included", "Private Community"],
-        description: "Create 10x more video content in 90% less time using AKOOL AI. Face Swap, AI Avatar, Video Translation & more included",
-        type: "digital",
-        featured: true
+        reviews: 1089,
+        discount: 60,
+        description: "Complete workout set with 5 resistance levels and door anchor.",
+        inStock: true,
+        isNew: false
+    },
+    {
+        id: 7,
+        name: "Bluetooth Speaker",
+        price: 39.99,
+        originalPrice: 99.99,
+        image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&h=500&fit=crop",
+        category: "Electronics",
+        rating: 4.7,
+        reviews: 734,
+        discount: 60,
+        description: "Waterproof portable speaker with 20-hour battery life.",
+        inStock: true,
+        isNew: true
+    },
+    {
+        id: 8,
+        name: "Running Shoes",
+        price: 59.99,
+        originalPrice: 149.99,
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop",
+        category: "Fashion",
+        rating: 4.8,
+        reviews: 1567,
+        discount: 60,
+        description: "Lightweight and breathable running shoes with superior cushioning.",
+        inStock: true,
+        isNew: false
+    },
+    {
+        id: 9,
+        name: "Backpack Pro",
+        price: 44.99,
+        originalPrice: 119.99,
+        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop",
+        category: "Fashion",
+        rating: 4.6,
+        reviews: 892,
+        discount: 63,
+        description: "Water-resistant laptop backpack with USB charging port.",
+        inStock: true,
+        isNew: false
     }
 ];
 
 const CATEGORIES = [
-    { name: "Personal Development", count: 1, icon: "🎯" },
-    { name: "Health & Fitness", count: 2, icon: "💪" },
-    { name: "Business & Investment", count: 1, icon: "📈" },
-    { name: "Education", count: 1, icon: "📚" }
+    { id: 'all', name: 'All Products', count: PRODUCTS_DATA.length },
+    { id: 'Electronics', name: 'Electronics', count: PRODUCTS_DATA.filter(p => p.category === 'Electronics').length },
+    { id: 'Fitness', name: 'Fitness', count: PRODUCTS_DATA.filter(p => p.category === 'Fitness').length },
+    { id: 'Home', name: 'Home', count: PRODUCTS_DATA.filter(p => p.category === 'Home').length },
+    { id: 'Fashion', name: 'Fashion', count: PRODUCTS_DATA.filter(p => p.category === 'Fashion').length }
 ];
-
-const TESTIMONIALS = [
-    {
-        name: "Michael R.",
-        role: "Business Owner",
-        text: "The Billionaire Brain Wave changed my life! I manifested my dream income in just 2 months. This is absolutely life-changing!",
-        rating: 5,
-        product: "The Billionaire Brain Wave"
-    },
-    {
-        name: "Sarah Johnson",
-        role: "Fitness Enthusiast",
-        text: "KeySlim Drops helped me lose 23 pounds in 8 weeks! No crazy diets, just amazing results. Highly recommend!",
-        rating: 5,
-        product: "KeySlim Drops"
-    },
-    {
-        name: "David Martinez",
-        role: "Gym Owner",
-        text: "Advanced Amino Formula is incredible! My clients see faster muscle growth and recovery. Best supplement on the market!",
-        rating: 5,
-        product: "Advanced Amino Formula"
-    },
-    {
-        name: "Emily Chen",
-        role: "Content Creator",
-        text: "AI Educator Pro completely transformed my content creation process. I'm making 10x more videos in half the time!",
-        rating: 5,
-        product: "AI Educator Pro"
-    },
-    {
-        name: "Robert Thompson",
-        role: "Entrepreneur",
-        text: "AlgePrime gave me the exact system I needed to scale my business. The ROI has been incredible!",
-        rating: 5,
-        product: "AlgePrime"
-    },
-    {
-        name: "Lisa Anderson",
-        role: "Health Coach",
-        text: "These products helped me and my clients achieve results we never thought possible. Quality is outstanding!",
-        rating: 5,
-        product: "Multiple Products"
-    }
-];
-
-// Export for use in other files
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { PRODUCTS, CATEGORIES, TESTIMONIALS };
-}

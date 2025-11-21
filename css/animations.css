@@ -1,0 +1,466 @@
+/* ============================================
+   3D ANIMATIONS & EFFECTS - FindNBuy Store
+   Add this file to your HTML after other CSS files
+   ============================================ */
+
+/* 3D Card Hover Effect */
+.product-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(59, 130, 246, 0.1);
+}
+
+.product-image-wrapper {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover .product-image-wrapper {
+    transform: translateZ(20px);
+}
+
+.product-content {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover .product-content {
+    transform: translateZ(10px);
+}
+
+/* Floating Animation for Badges */
+.product-badges .badge {
+    animation: float 3s ease-in-out infinite;
+}
+
+.product-badges .badge:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Glowing Effect on Hover */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Shimmer Effect for "Cheapest Price" Tag */
+.price-tag {
+    background: linear-gradient(
+        90deg,
+        rgba(16, 185, 129, 0.9) 0%,
+        rgba(16, 185, 129, 1) 50%,
+        rgba(16, 185, 129, 0.9) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Smooth Category Pills */
+.category-pill {
+    position: relative;
+    overflow: hidden;
+}
+
+.category-pill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.category-pill.active::after,
+.category-pill:hover::after {
+    opacity: 1;
+}
+
+.category-pill span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Hero Gradient Animation */
+.hero-gradient {
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.3) 0%, transparent 50%);
+    animation: gradientPulse 8s ease infinite;
+}
+
+@keyframes gradientPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+/* Parallax Scrolling Effect */
+.hero {
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/* Loading Skeleton Animation */
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        #f3f4f6 0%,
+        #e5e7eb 50%,
+        #f3f4f6 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: 0.5rem;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Micro Interactions - Button Press */
+.btn,
+.icon-btn,
+.category-pill {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:active,
+.icon-btn:active,
+.category-pill:active {
+    transform: scale(0.95);
+}
+
+.btn-primary:active {
+    transform: scale(0.95) translateY(-2px);
+}
+
+/* Wishlist Heart Animation */
+.wishlist-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wishlist-btn:hover {
+    transform: scale(1.2);
+}
+
+.wishlist-btn.active {
+    animation: heartBeat 0.6s ease;
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.3);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    75% {
+        transform: scale(1.25);
+    }
+}
+
+/* Star Rating Hover Effect */
+.stars i {
+    transition: all 0.2s ease;
+}
+
+.product-rating:hover .stars i {
+    transform: scale(1.1);
+}
+
+.stars i:hover {
+    transform: scale(1.3) rotate(10deg);
+}
+
+/* Image Zoom on Hover */
+.product-image {
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.15) rotate(2deg);
+}
+
+/* Alert Banner Slide In */
+.alert-banner {
+    animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Modal Entrance */
+.modal.active .modal-content {
+    animation: modalEntrance 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalEntrance {
+    from {
+        transform: scale(0.9) translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Cart Item Slide In */
+.cart-item {
+    animation: slideInFromRight 0.3s ease;
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Price Pulse Effect */
+.price-current {
+    animation: pricePulse 2s ease-in-out infinite;
+}
+
+@keyframes pricePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Discount Badge Rotation */
+.badge-discount {
+    animation: rotateIn 0.6s ease;
+    transform-origin: center;
+}
+
+@keyframes rotateIn {
+    from {
+        transform: rotate(-180deg) scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Search Bar Focus Effect */
+.search-input:focus {
+    animation: searchPulse 0.3s ease;
+}
+
+@keyframes searchPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.1);
+    }
+}
+
+/* Logo Hover Effect */
+.logo {
+    transition: all 0.3s ease;
+}
+
+.logo:hover .logo-icon {
+    transform: rotate(360deg) scale(1.1);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Footer Links Hover */
+.footer-col a {
+    position: relative;
+    display: inline-block;
+}
+
+.footer-col a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.footer-col a:hover::after {
+    width: 100%;
+}
+
+/* Loading State for Buttons */
+.btn:disabled {
+    position: relative;
+    pointer-events: none;
+}
+
+.btn .spinner {
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Notification Slide In */
+.notification {
+    animation: notificationSlide 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes notificationSlide {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Quantity Button Ripple */
+.quantity-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.quantity-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+}
+
+.quantity-btn:active::after {
+    width: 100px;
+    height: 100px;
+}
+
+/* Hero Badge Bounce */
+.hero-badge {
+    animation: badgeBounce 2s ease-in-out infinite;
+}
+
+@keyframes badgeBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Smooth Page Transitions */
+.page-transition {
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Reduced Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

@@ -1,49 +1,37 @@
 // ============================================
-// CONFIGURATION FILE - FindNBuy.store
+// CONFIGURATION - FindNBuy Store
 // ============================================
 
 const CONFIG = {
-    // Your Digistore24 Affiliate ID
-    AFFILIATE_ID: 'EdwineLase',
+    // Supabase Configuration
+    SUPABASE_URL: 'https://iphxmjjcnomjqzhhmcqi.supabase.co',
+    SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlwaHhtampjbm9tanF6aGhtY3FpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM3MjcwMjAsImV4cCI6MjA3OTMwMzAyMH0.SHEfqTVR8Zsuj48r-FHgm1qG2Zyn6f8JozRpH3hIhQo',
     
-    // Site Information
-    SITE_NAME: 'FindNBuy.store',
-    SITE_TAGLINE: 'Find & Buy Life-Changing Products',
-    SITE_DESCRIPTION: 'Discover premium products that transform lives',
-    DOMAIN: 'findnbuy.store',
+    // Stripe Configuration
+    STRIPE_PUBLIC_KEY: 'pk_test_51SD5aG3EYHc3U9Etyi3F67dRw22iyWis6w2zZM6gs6RptB3NV37mKK2003HiCiKwo7FR0bn15yYrMRpPJ3zJAkuf00XxhcxdpB',
     
-    // Social Proof Numbers
-    TOTAL_CUSTOMERS: '50,000+',
-    TOTAL_PRODUCTS: '100+',
-    AVERAGE_RATING: '4.9',
-    TOTAL_REVIEWS: '18,567',
-    WEEKLY_PURCHASES: '3,421',
-    
-    // Display Settings
-    PRODUCTS_PER_PAGE: 6,
-    SHOW_COMMISSION: false, // Hide commission from customers
-    SHOW_ORIGINAL_PRICE: true,
-    
-    // Analytics (Add your tracking IDs)
-    GOOGLE_ANALYTICS_ID: '',
-    FACEBOOK_PIXEL_ID: '',
-    
-    // Currency
+    // App Settings
     CURRENCY_SYMBOL: '$',
+    PRODUCTS_PER_PAGE: 9,
+    ENABLE_WISHLIST: true,
+    ENABLE_REVIEWS: true,
     
-    // Contact Info
-    CONTACT_EMAIL: 'support@findnbuy.store',
+    // Shipping
+    FREE_SHIPPING_THRESHOLD: 0, // Free shipping on all orders
+    SHIPPING_COST: 0,
     
-    // Digistore24 Base URL
-    DIGISTORE_BASE_URL: 'https://www.digistore24.com/redir/'
+    // Tax
+    TAX_RATE: 0, // 0% tax for now
+    
+    // API Endpoints (if using custom backend)
+    API_BASE_URL: 'https://your-api.com/api',
+    
+    // Analytics
+    GOOGLE_ANALYTICS_ID: '', // Optional
+    FACEBOOK_PIXEL_ID: '', // Optional
 };
 
-// Helper function to generate affiliate link
-function generateAffiliateLink(productId) {
-    return `${CONFIG.DIGISTORE_BASE_URL}${productId}/${CONFIG.AFFILIATE_ID}`;
-}
-
-// Export config
+// Export for use in other files
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = CONFIG;
 }
