@@ -239,8 +239,9 @@ class UIManager {
                         <i data-lucide="heart" ${isInWishlist ? 'fill="currentColor"' : ''}></i>
                     </button>
 
-                    <div class="price-tag">
-                        🎯 Cheapest Price Online!
+                    <div class="cheapest-badge">
+                        <i data-lucide="target"></i>
+                        <span>Cheapest Price Found!</span>
                     </div>
                 </div>
 
