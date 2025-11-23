@@ -18,6 +18,9 @@
     <!-- Stripe JS -->
     <script src="https://js.stripe.com/v3/"></script>
     
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
     <!-- CSS Files -->
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/base.css">
@@ -27,6 +30,14 @@
     <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
+    <!-- 3D Background Animation -->
+    <div class="background-animation">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="mesh-gradient"></div>
+    </div>
+
     <!-- Header -->
     <header id="mainHeader" class="header">
         <div class="container">
@@ -42,7 +53,7 @@
                     </div>
                 </div>
 
-                <!-- Desktop Search -->
+                <!-- Desktop Search - SINGLE SEARCH BAR -->
                 <div class="search-bar desktop-only">
                     <i data-lucide="search" class="search-icon"></i>
                     <input 
@@ -93,8 +104,8 @@
                 </button>
             </div>
 
-            <!-- Mobile Search -->
-            <div class="search-bar mobile-only">
+            <!-- Mobile Search - SINGLE SEARCH BAR FOR MOBILE -->
+            <div class="search-bar mobile-only mobile-search">
                 <i data-lucide="search" class="search-icon"></i>
                 <input 
                     type="text" 
@@ -304,13 +315,14 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
+                <!-- Company Info -->
                 <div class="footer-col">
-                    <div class="logo">
+                    <div class="logo footer-logo">
                         <div class="logo-icon">
                             <i data-lucide="trending-down"></i>
                         </div>
                         <div class="logo-text">
-                            <span class="logo-brand">FindnBuy</span>
+                            <span class="logo-brand">FindNBuy</span>
                             <span class="logo-tagline">Cheapest Online</span>
                         </div>
                     </div>
@@ -318,56 +330,116 @@
                         We scan millions of products across the internet to find you the absolute lowest prices. 
                         Stop overpaying – start saving today!
                     </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="social-link"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="social-link"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="social-link"><i data-lucide="youtube"></i></a>
+                    </div>
                 </div>
 
+                <!-- Shop Links -->
                 <div class="footer-col">
                     <h4>Shop</h4>
                     <ul>
-                        <li><a href="#">Electronics</a></li>
-                        <li><a href="#">Fashion</a></li>
-                        <li><a href="#">Home & Garden</a></li>
-                        <li><a href="#">Sports & Fitness</a></li>
+                        <li><a href="#" onclick="uiManager.filterByCategory('Electronics')">Electronics</a></li>
+                        <li><a href="#" onclick="uiManager.filterByCategory('Fashion')">Fashion</a></li>
+                        <li><a href="#" onclick="uiManager.filterByCategory('Home')">Home & Garden</a></li>
+                        <li><a href="#" onclick="uiManager.filterByCategory('Fitness')">Sports & Fitness</a></li>
+                        <li><a href="#" onclick="uiManager.filterByCategory('all')">All Products</a></li>
                     </ul>
                 </div>
 
+                <!-- Company Links -->
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#blog">Blog</a></li>
                     </ul>
                 </div>
 
+                <!-- Support & Legal -->
                 <div class="footer-col">
-                    <h4>Our Promise</h4>
+                    <h4>Support</h4>
                     <ul>
-                        <li>✓ Lowest prices guaranteed</li>
-                        <li>✓ Price match guarantee</li>
-                        <li>✓ Free shipping on all orders</li>
-                        <li>✓ 30-day money back</li>
+                        <li><a href="#help">Help Center</a></li>
+                        <li><a href="#shipping">Shipping Info</a></li>
+                        <li><a href="#returns">Returns & Refunds</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
                     </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i data-lucide="mail"></i>
+                            <a href="mailto:support@findnbuy.store">support@findnbuy.store</a>
+                        </li>
+                        <li>
+                            <i data-lucide="phone"></i>
+                            <a href="tel:+1234567890">+1 (234) 567-890</a>
+                        </li>
+                        <li>
+                            <i data-lucide="map-pin"></i>
+                            <span>123 Commerce St, NY 10001</span>
+                        </li>
+                    </ul>
+                    <div class="newsletter">
+                        <h5>Newsletter</h5>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email" required>
+                            <button type="submit"><i data-lucide="send"></i></button>
+                        </form>
+                    </div>
                 </div>
             </div>
 
+            <!-- Trust Badges -->
+            <div class="trust-section">
+                <div class="trust-badge-item">
+                    <i data-lucide="shield-check"></i>
+                    <span>Secure Payment</span>
+                </div>
+                <div class="trust-badge-item">
+                    <i data-lucide="truck"></i>
+                    <span>Free Shipping</span>
+                </div>
+                <div class="trust-badge-item">
+                    <i data-lucide="refresh-cw"></i>
+                    <span>30-Day Returns</span>
+                </div>
+                <div class="trust-badge-item">
+                    <i data-lucide="award"></i>
+                    <span>Price Match</span>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <p>&copy; 2024 FindNBuy.store - All rights reserved</p>
+                <p class="payment-methods">
+                    <span>We accept:</span>
+                    <i data-lucide="credit-card"></i>
+                    💳 Visa, Mastercard, Amex, PayPal
+                </p>
             </div>
         </div>
     </footer>
 
     <!-- JavaScript Files -->
-     <!-- Add before your other scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/config.js"></script>
     <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
     <script src="js/products.js"></script>
     <script src="js/cart.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/auth.js"></script>
     <script src="js/ui.js"></script>
-    <script src="js/server.js"></script>
     <script src="js/main.js"></script>
     <script>
         // Initialize Lucide icons
