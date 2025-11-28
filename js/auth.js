@@ -24,12 +24,17 @@ class AuthManager {
         const loginBtnMobile = document.getElementById('loginBtnMobile');
         
         if (loginBtn) {
-            loginBtn.addEventListener('click', () => this.showAuthModal('login'));
+            // Prevent default and ensure modal is displayed even if other errors occur
+            loginBtn.addEventListener('click', (e) => {
+                if (e && typeof e.preventDefault === 'function') e.preventDefault();
+                try { this.showAuthModal('login'); } catch (err) { console.error('Failed to open auth modal:', err); }
+            });
         }
         if (loginBtnMobile) {
-            loginBtnMobile.addEventListener('click', () => {
-                this.showAuthModal('login');
-                uiManager.closeMobileMenu();
+            loginBtnMobile.addEventListener('click', (e) => {
+                if (e && typeof e.preventDefault === 'function') e.preventDefault();
+                try { this.showAuthModal('login'); } catch (err) { console.error('Failed to open auth modal (mobile):', err); }
+                try { uiManager.closeMobileMenu(); } catch (_ignore) { /* ignore if uiManager not ready */ }
             });
         }
 
@@ -40,7 +45,7 @@ class AuthManager {
         }
 
         // Close on overlay click
-        const modalOverlay = this.authModal.querySelector('.modal-overlay');
+        const modalOverlay = this.authModal ? this.authModal.querySelector('.modal-overlay') : null;
         if (modalOverlay) {
             modalOverlay.addEventListener('click', () => this.hideAuthModal());
         }
@@ -89,14 +94,18 @@ class AuthManager {
     showAuthModal(mode = 'login') {
         this.isLoginMode = mode === 'login';
         this.updateAuthModalUI();
+        if (!this.authModal) {
+            console.warn('Auth modal element not found in DOM');
+            return;
+        }
         this.authModal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 
     hideAuthModal() {
-        this.authModal.classList.remove('active');
+        if (this.authModal) this.authModal.classList.remove('active');
         document.body.style.overflow = '';
-        this.authForm.reset();
+        if (this.authForm && typeof this.authForm.reset === 'function') this.authForm.reset();
     }
 
     toggleAuthMode() {

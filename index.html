@@ -80,7 +80,7 @@
                     
                     <div id="userSection">
                         <!-- Logged out state -->
-                        <button id="loginBtn" class="btn btn-primary" style="background: linear-gradient(135deg, #a855f7, #ec4899); color: white; border: none;">
+                        <button id="loginBtn" class="btn btn-primary" style="background: linear-gradient(135deg, #a855f7, #ec4899); color: white; border: none;" onclick="if(window.authManager&&typeof authManager.showAuthModal==='function'){authManager.showAuthModal('login');}">
                             <i data-lucide="log-in"></i>
                             <span style="color: white;">Login</span>
                         </button>
@@ -137,7 +137,7 @@
                     <span>Cart</span>
                     <span class="badge" id="cartBadgeMobile">0</span>
                 </a>
-                <a href="#" class="mobile-nav-item" id="loginBtnMobile">
+                <a href="javascript:void(0)" class="mobile-nav-item" id="loginBtnMobile" onclick="if(window.authManager&&typeof authManager.showAuthModal==='function'){authManager.showAuthModal('login');} if(window.uiManager&&typeof uiManager.closeMobileMenu==='function'){uiManager.closeMobileMenu();} return false;">
                     <i data-lucide="log-in"></i>
                     <span>Login</span>
                 </a>
