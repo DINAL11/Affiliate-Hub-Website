@@ -177,6 +177,30 @@ select {
     display: none;
 }
 
+/* CRITICAL SECURITY: Prevent any forms from appearing outside proper containers */
+body > form,
+main form,
+section form,
+.products-section form,
+.hero form,
+article form {
+    display: none !important;
+    visibility: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+}
+
+/* Only allow forms in these specific containers */
+.modal form,
+.auth-form,
+#authForm,
+.newsletter-form {
+    display: block !important;
+    visibility: visible !important;
+    position: relative !important;
+    left: auto !important;
+}
+
 /* Text Utilities */
 .text-center {
     text-align: center;

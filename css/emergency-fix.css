@@ -1,0 +1,213 @@
+/* ============================================
+   EMERGENCY FIXES - Add this file to fix issues
+   Add to HTML: <link rel="stylesheet" href="css/emergency-fix.css">
+   ============================================ */
+
+/* FIX 1: Login Button Text Visibility */
+#loginBtn,
+.btn-primary {
+    background: linear-gradient(135deg, #a855f7, #ec4899) !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.75rem 1.5rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    font-weight: 600 !important;
+    border-radius: 9999px !important;
+    white-space: nowrap !important;
+}
+
+#loginBtn span,
+.btn-primary span {
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+#loginBtn i,
+.btn-primary i {
+    color: white !important;
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+}
+
+/* FIX 2: Hide ALL rogue forms outside modals */
+body > form:not(#newsletter-form),
+main form,
+section form:not(.newsletter-form),
+.products-section form,
+.hero form,
+article form,
+div:not(.modal-content):not(.auth-form) > form {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    left: -99999px !important;
+    pointer-events: none !important;
+}
+
+/* FIX 3: Only show forms in proper places */
+.modal.active form,
+#authModal form,
+#authForm,
+.auth-form,
+.newsletter-form {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    left: auto !important;
+    pointer-events: auto !important;
+}
+
+/* FIX 4: Ensure modal starts hidden */
+.modal,
+#authModal {
+    display: none !important;
+}
+
+.modal.active,
+#authModal.active {
+    display: flex !important;
+}
+
+/* FIX 5: Make sure user menu works */
+.user-menu {
+    position: relative;
+    display: none;
+}
+
+.user-menu[style*="display: block"] {
+    display: block !important;
+}
+
+.user-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--color-text-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.user-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.user-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 0.5rem;
+    min-width: 12rem;
+    display: none;
+    z-index: 1000;
+}
+
+.user-menu:hover .user-dropdown {
+    display: block;
+}
+
+.user-dropdown a {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.user-dropdown a:hover {
+    background: var(--color-bg-secondary);
+}
+
+/* FIX 6: Icon button styling */
+.icon-btn {
+    position: relative;
+    padding: 0.625rem;
+    border-radius: 0.75rem;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.icon-btn:hover {
+    background: var(--color-bg-tertiary);
+}
+
+.icon-btn .badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #ef4444;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.125rem 0.375rem;
+    border-radius: 9999px;
+    min-width: 1.25rem;
+    text-align: center;
+}
+
+/* FIX 7: Ensure proper z-index layering */
+.header {
+    z-index: 1000;
+}
+
+.modal {
+    z-index: 10000;
+}
+
+.cart-sidebar {
+    z-index: 9999;
+}
+
+.mobile-menu {
+    z-index: 9998;
+}
+
+/* FIX 8: Prevent any login-related content outside modal */
+.login-container:not(.modal *),
+.auth-container:not(.modal *),
+[class*="login"]:not(.modal *):not(.btn):not(.user-menu *) {
+    display: none !important;
+}
+
+/* FIX 9: Make Login text more visible with text shadow */
+#loginBtn span {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* FIX 10: Ensure nav actions are visible */
+.nav-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+}
+
+/* Mobile fixes */
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none !important;
+    }
+    
+    .mobile-only {
+        display: block !important;
+    }
+    
+    #loginBtn {
+        padding: 0.625rem 1.25rem !important;
+        font-size: 0.875rem !important;
+    }
+}

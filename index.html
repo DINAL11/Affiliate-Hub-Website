@@ -19,9 +19,11 @@
     <script src="https://js.stripe.com/v3/"></script>
     
     <!-- Supabase -->
+    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <!-- CSS Files -->
+     <link rel="stylesheet" href="css/emergency-fix.css">
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/components.css">
@@ -78,9 +80,9 @@
                     
                     <div id="userSection">
                         <!-- Logged out state -->
-                        <button id="loginBtn" class="btn btn-primary">
+                        <button id="loginBtn" class="btn btn-primary" style="background: linear-gradient(135deg, #a855f7, #ec4899); color: white; border: none;">
                             <i data-lucide="log-in"></i>
-                            <span>Login</span>
+                            <span style="color: white;">Login</span>
                         </button>
                         
                         <!-- Logged in state (hidden by default) -->
@@ -344,7 +346,7 @@
                     <ul>
                         <li><a href="#" onclick="uiManager.filterByCategory('Electronics')">Electronics</a></li>
                         <li><a href="#" onclick="uiManager.filterByCategory('Fashion')">Fashion</a></li>
-                        <li><a href="#" onclick="uiManager.filterByCategory('Home')">Home</a></li>
+                        <li><a href="#" onclick="uiManager.filterByCategory('Home')">Home & Garden</a></li>
                         <li><a href="#" onclick="uiManager.filterByCategory('Fitness')">Sports & Fitness</a></li>
                         <li><a href="#" onclick="uiManager.filterByCategory('all')">All Products</a></li>
                     </ul>
@@ -355,8 +357,10 @@
                     <h4>Company</h4>
                     <ul>
                         <li><a href="#about">About Us</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
                         <li><a href="#contact">Contact Us</a></li>
-                        
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#blog">Blog</a></li>
                     </ul>
                 </div>
 
@@ -378,11 +382,24 @@
                     <ul class="contact-info">
                         <li>
                             <i data-lucide="mail"></i>
-                            <a href="mailto:support@findnbuy.store">metacorelife.com</a>
+                            <a href="mailto:support@findnbuy.store">support@findnbuy.store</a>
                         </li>
-                        
+                        <li>
+                            <i data-lucide="phone"></i>
+                            <a href="tel:+1234567890">+1 (234) 567-890</a>
+                        </li>
+                        <li>
+                            <i data-lucide="map-pin"></i>
+                            <span>123 Commerce St, NY 10001</span>
+                        </li>
                     </ul>
-                    
+                    <div class="newsletter">
+                        <h5>Newsletter</h5>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email" required>
+                            <button type="submit"><i data-lucide="send"></i></button>
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -394,7 +411,7 @@
                 </div>
                 <div class="trust-badge-item">
                     <i data-lucide="truck"></i>
-                    <span>Free Shipping for order $35+</span>
+                    <span>Free Shipping</span>
                 </div>
                 <div class="trust-badge-item">
                     <i data-lucide="refresh-cw"></i>
@@ -426,6 +443,7 @@
     <script src="js/cart.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/main.js"></script>
+    
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
